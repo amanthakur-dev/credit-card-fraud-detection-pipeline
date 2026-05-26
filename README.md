@@ -1,4 +1,4 @@
-# 💳 Credit Card Fraud Detection — Data Engineering & ML Pipeline
+# Credit Card Fraud Detection — Data Engineering & ML Pipeline
 
 An end-to-end Data Engineering and Machine Learning project built on **Databricks**
 using **PySpark**, **SparkSQL**, and **Spark MLlib** — following Medallion Architecture
@@ -6,7 +6,7 @@ using **PySpark**, **SparkSQL**, and **Spark MLlib** — following Medallion Arc
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 This pipeline ingests, cleans, feature-engineers, and models 284,807 real credit card
 transactions from European cardholders (September 2013). Only 492 transactions (0.17%)
@@ -16,7 +16,7 @@ Random Forest classifier to detect fraud with high recall.
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 Raw CSV (284,807 transactions)
@@ -34,7 +34,7 @@ Raw CSV (284,807 transactions)
 
 ---
 
-## ⚠️ The Core Challenge — Class Imbalance
+## The Core Challenge — Class Imbalance
 
 ```
 Total transactions:  284,807
@@ -50,17 +50,17 @@ but catch zero frauds. This project handles imbalance using:
 
 ---
 
-## 📊 Key Fraud Insights (SparkSQL Analysis)
+## Key Fraud Insights (SparkSQL Analysis)
 
-- 🕐 **Peak fraud hours** — Fraud rate spikes in early morning (12AM–5AM)
-- 💸 **Card testing pattern** — Disproportionately high fraud rate in under-$10 transactions
-- 🌙 **Night transactions** — Higher fraud rate vs daytime transactions
-- 📅 **Day 2 spike** — Higher fraud count on day 2 vs day 1 of the dataset
-- 🔝 **Top fraud value** — Highest fraud transactions identified and ranked
+- 1. **Peak fraud hours** — Fraud rate spikes in early morning (12AM–5AM)
+- 2. **Card testing pattern** — Disproportionately high fraud rate in under-$10 transactions
+- 3. **Night transactions** — Higher fraud rate vs daytime transactions
+- 4. **Day 2 spike** — Higher fraud count on day 2 vs day 1 of the dataset
+- 5. **Top fraud value** — Highest fraud transactions identified and ranked
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Tool | Purpose |
 |------|---------|
@@ -74,7 +74,7 @@ but catch zero frauds. This project handles imbalance using:
 
 ---
 
-## 📁 Data Lake Structure
+## Data Lake Structure
 
 ```
 /Volumes/workspace/default/fraud_data/
@@ -87,7 +87,7 @@ but catch zero frauds. This project handles imbalance using:
 
 ---
 
-## ⚙️ Pipeline Notebooks
+## Pipeline Notebooks
 
 | Notebook | Description |
 |----------|-------------|
@@ -99,7 +99,7 @@ but catch zero frauds. This project handles imbalance using:
 
 ---
 
-## 🔍 Feature Engineering (Silver Layer)
+## Feature Engineering (Silver Layer)
 
 | Feature | Source | Rationale |
 |---------|--------|-----------|
@@ -113,7 +113,7 @@ but catch zero frauds. This project handles imbalance using:
 
 ---
 
-## 🤖 ML Pipeline
+## ML Pipeline
 
 ```
 Silver Layer
@@ -134,16 +134,15 @@ Predictions → Gold Layer
 
 ---
 
-## 📈 Model Results
+## Model Results
 
 | Metric | Logistic Regression | Random Forest |
 |--------|-------------------|---------------|
-| AUC-ROC | — | — |
-| F1 Score | — | — |
-| Precision | — | — |
-| Recall | — | — |
+| AUC-ROC | 0.9941 | 0.9830 |
+| F1 Score | 0.9929 | 0.9995 |
+| Precision | 0.9984 | 0.9995 |
+| Recall | 0.9884 | 0.9995 |
 
-> Fill in your actual numbers from Day 4 output
 
 **Random Forest chosen** as final model — higher AUC-ROC and better recall on
 minority fraud class. Feature importance confirmed `V14`, `V17`, `V12` as top
@@ -152,7 +151,7 @@ in the top 15.
 
 ---
 
-## 🔍 Advanced SQL Concepts Demonstrated
+## Advanced SQL Concepts Demonstrated
 
 - `SUM(CASE WHEN Class = 1 THEN 1 ELSE 0 END)` — conditional aggregation
 - `RANK() OVER (ORDER BY fraud_count DESC)` — ranking fraud hours
@@ -163,7 +162,7 @@ in the top 15.
 
 ---
 
-## ⚡ Optimization Techniques Applied
+## Optimization Techniques Applied
 
 - **Partitioned Silver by Class** — model reads fraud/legit rows separately without full scan
 - **Class weighting** — avoids expensive oversampling while correcting imbalance
@@ -173,13 +172,13 @@ in the top 15.
 
 ---
 
-## 📸 Sample Charts
+## Sample Charts
 
 ### Class Imbalance
-![Class Imbalance](charts/class_imbalance.png)
+![Class Imbalance](charts/class_distribution.png)
 
 ### Fraud Rate by Hour
-![Hourly Fraud](charts/hourly_fraud_rate.png)
+![Hourly Fraud](charts/fraud_by_hour.png)
 
 ### Feature Importance — Random Forest
 ![Feature Importance](charts/feature_importance.png)
@@ -189,16 +188,9 @@ in the top 15.
 
 ---
 
-## 📂 Dataset Source
+## Dataset Source
 
 [ULB Credit Card Fraud Detection](https://zenodo.org/records/7395559)
 Transactions by European cardholders — September 2013
 License: CC-BY 4.0
 
----
-
-## 👤 Author
-
-**[Your Name]**
-BTech CSE (Data Science) | Data Engineering
-[LinkedIn](your-linkedin-url) • [GitHub](your-github-url)

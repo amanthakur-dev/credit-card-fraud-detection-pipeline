@@ -218,6 +218,7 @@ print("✅ Saved: feature_importance.png")
 
 #heatmap
 from pyspark.sql.functions import col as spark_col
+import numpy as np
 
 # Recalculate from predictions
 df_pred_spark = spark.read.parquet(
